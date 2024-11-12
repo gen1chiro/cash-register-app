@@ -1,0 +1,54 @@
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    --blue: #4e4ce6;
+}
+@supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    row-gap: 2em;
+}
+.container {
+    width: 60vw;
+    min-width: 600px;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cash-register {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px;
+    padding: 20px;
+}
+.screen {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--blue);
+}
+.cid {
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+}
+.base {
+    width: 20vw;
+    min-width: 200px;
+    aspect-ratio: 16/3;
+    background-color: black;
+}
