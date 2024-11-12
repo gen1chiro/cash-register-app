@@ -1,3 +1,4 @@
+const cashDisplay = document.querySelector(".cid");
 let cash = 5;
 let price = 3.26;
 let cid = [
@@ -47,3 +48,10 @@ denominations.forEach(denomination => {
 });
 console.log(cidMap);
 console.log(result);
+
+cidMap.forEach((value, key) => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = `${value}: ${key}`;
+    cashDisplay.appendChild(paragraph);
+})
+
