@@ -7,15 +7,39 @@
     <title>Cash Register</title>
 </head>
 <body>
-    <h1>Cash Register Project</h1>
+    <h1 class="title-text">Cash Register Project</h1>
     <div class="container">
         <div class="cash-register">
             <div class="screen">
-                <div class="cid">
-
+                <div class="cid-container">
+                    <div class="cid"></div>
+                    <div class="cid">
+                        <p class="cid-header"><strong>Change Due</strong></p>
+                        <div id="change-due"></div>
+                    </div>
                 </div>
-                <div class="">
-
+                <div class="drawer">
+                    <div class="input-container">
+                        <label for="total">Customer Total: </label>
+                        <input type="text" id="total" name="total" readonly>
+                        <label for="cash">Customer Cash: </label>
+                        <input type="text" id="cash" name="cash" readonly>
+                    </div>
+                    <div class="button-container">
+                        <button class="button" value="7">7</button>
+                        <button class="button" value="8">8</button>
+                        <button class="button" value="9">9</button>
+                        <button class="button" value="4">4</button>
+                        <button class="button" value="5">5</button>
+                        <button class="button" value="6">6</button>
+                        <button class="button" value="1">1</button>
+                        <button class="button" value="2">2</button>
+                        <button class="button" value="3">3</button>
+                        <button class="button" value=".">.</button>
+                        <button class="button" value="0">0</button>
+                        <button class="clear-button">clear</button>
+                        <button id="purchase-btn">Purchase</button>
+                    </div>
                 </div>
             </div>
         </div>
