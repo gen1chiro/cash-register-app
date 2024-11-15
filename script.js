@@ -30,16 +30,13 @@ const denominations = [
     { name: 'PENNY', value: 0.01 }
 ];
 
-const cidMap = new Map(cid);
-
-const cidTotal = () => Array.from(cidMap.values()).reduce((a, c) => a + c, 0);
+const cidTotal = () => parseFloat(cid.reduce((a, c) => a + c[1], 0).toFixed(2));
 
 const checkCustomerCash = () => Number(cashDisplay.value) >= price;
 
 const calculateChange = () => {
     const result = [];
     let status = "Status: OPEN";
-    let cidValues = [];
     let change = Number(cashDisplay.value) - price;
     change = parseFloat(change.toFixed(2));
 
@@ -53,8 +50,9 @@ const calculateChange = () => {
         return;
     }
 
-    denominations.forEach(denomination => {
-        let availableCash = cidMap.get(denomination.name);
+    denominations.forEach((denomination) => {
+        let cidIndex = cid.findIndex(innerArray => innerArray[0] === denomination.name);
+        let availableCash = cid[cidIndex][1];
         let count = 0;
 
         while (change >= denomination.value && availableCash >= denomination.value) {
@@ -65,12 +63,17 @@ const calculateChange = () => {
             count++;
         }
 
-        cidMap.set(denomination.name, availableCash);
+        cid[cidIndex][1] = availableCash;
 
         if (count > 0) {
             result.push([denomination.name, denomination.value * count]);
         }
     });
+
+    if (change > 0.00) {
+        updateChangeDueDisplay([], "Status: INSUFFICIENT_FUNDS");
+        return;
+    }
 
     if (cidTotal() === 0) {
         status = "Status: CLOSED";
@@ -81,9 +84,9 @@ const calculateChange = () => {
 
 const updateCidDisplay = () => {
     changeDisplay.innerHTML = "<p class=\"cid-header\"><strong>Change in Drawer</strong></p>";
-    cidMap.forEach((value, key) => {
+    cid.forEach((denomination) => {
         const paragraph = document.createElement("p");
-        paragraph.textContent = `${key}: ${value}`;
+        paragraph.textContent = `${denomination[0]}: $${denomination[1]}`;
         changeDisplay.appendChild(paragraph);
     });
 }
@@ -92,7 +95,7 @@ const updateChangeDueDisplay = (result, status) => {
     changeDueDisplay.innerHTML = `<p>${status}</p>`;
     result.forEach(result => {
         const paragraph = document.createElement("p");
-        paragraph.textContent = `${result[0]}: ${result[1]}`;
+        paragraph.textContent = `${result[0]}: ${result.length > 0 ? "$":""}${result[1]}`;
         changeDueDisplay.appendChild(paragraph);
     })
 }
