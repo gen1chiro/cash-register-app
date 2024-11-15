@@ -1,7 +1,7 @@
 :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;
-    --blue: #4e4ce6;
+    --gray: #cdcdcd;
 }
 @supports (font-variation-settings: normal) {
     :root { font-family: InterVariable, sans-serif; }
@@ -27,6 +27,9 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.title-text {
+    font-size: 3em;
+}
 .cash-register {
     background-color: black;
     height: 100%;
@@ -38,13 +41,54 @@ body {
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    background-color: var(--blue);
+    background-color: var(--gray);
+    padding: 5px;
+    display: flex;
 }
-.cid {
-    width: 40%;
+.cid-container {
+    font-family: "Courier New",  monospace;
+    width: 50%;
     height: 100%;
     background-color: white;
     border-radius: 20px 0 0 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.cid {
+    width: 50%;
+    font-size: 1.5em;
+}
+.cid-header {
+    text-align: center;
+    padding-bottom: 1em;
+}
+.drawer {
+    width: 50%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    background-color: darkgray;
+    padding: 20px;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 1em;
+}
+#cash, #total {
+    height: 2em;
+}
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 100%;
+    aspect-ratio: 1/1;
+    gap: 1em;
+}
+#purchase-btn {
+    grid-column: 1 / -1;
 }
 .base {
     width: 20vw;
